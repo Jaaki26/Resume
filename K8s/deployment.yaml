@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resume-site
+  labels:
+    app: resume-site
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: resume-site
+  template:
+    metadata:
+      labels:
+        app: resume-site
+    spec:
+      containers:
+      - name: resume-site
+        image: <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/resume-site:latest
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: resume-site-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: resume-site
+  ports:
+   - port: 80
+     targetPort: 80
