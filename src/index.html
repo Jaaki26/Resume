@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Padala Janakiram — Resume</title>
+  <style>
+    body{font-family:Arial;margin:0;padding:0;background:#f6f7fb;color:#222}
+    .container{max-width:900px;margin:30px auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    .header{display:flex;gap:20px;align-items:center}
+    .photo{width:120px;height:120px;border-radius:8px;object-fit:cover}
+    .name{font-size:24px;font-weight:700}
+    .tabs{margin-top:20px;display:flex;gap:10px}
+    .tab{padding:10px 16px;border-radius:6px;background:#eef;cursor:pointer}
+    .tab.active{background:#2b6df6;color:#fff}
+    .content{margin-top:20px}
+    table{width:100%;border-collapse:collapse}
+    td,th{padding:8px;border:1px solid #eee}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="assets/photo.jpg" class="photo" alt="Photo"/>
+      <div>
+        <div class="name">Padala Janakiram</div>
+        <div>DevOps Engineer | M365 Administrator</div>
+        <div>Phone: +91 8686434329 &nbsp; • &nbsp; Padala.janakiram26@gmail.com</div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="summary">Summary</div>
+      <div class="tab" data-tab="education">Education</div>
+      <div class="tab" data-tab="experience">Experience</div>
+      <div class="tab" data-tab="skills">Skills</div>
+    </div>
+
+    <div class="content" id="content">
+      <h3>Professional Summary</h3>
+      <p>AWS DevOps Engineer with 2+ years experience in CI/CD, EKS, Docker, Terraform... (from resume).</p>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const content = document.getElementById('content');
+    const data = {
+      summary:`<h3>Professional Summary</h3><p>AWS DevOps Engineer with 2+ years experience in CI/CD pipelines, Kubernetes, Terraform and Docker.</p>`,
+      education:`<h3>Education</h3><table><tr><th>Institution</th><th>Course</th><th>Years</th></tr><tr><td>Nishtha College of Engineering, Hyderabad</td><td>Electronics & Communication Engineering</td><td>2015–2019</td></tr></table>`,
+      experience:`<h3>Experience</h3><p>DevOps Engineer | Tata Consultancy Services | Sep 2023 – Present</p><ul><li>CI/CD pipelines with Jenkins and Docker</li><li>Deployed workloads to EKS</li></ul>`,
+      skills:`<h3>Skills</h3><p>AWS, Jenkins, Docker, Kubernetes, Terraform, Ansible, PowerShell</p>`
+    };
+
+    tabs.forEach(t=>{
+      t.onclick = ()=> {
+        tabs.forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        content.innerHTML = data[t.getAttribute('data-tab')];
+      }
+    });
+  </script>
+</body>
+</html>
